@@ -1,0 +1,37 @@
+{
+  "data_root": "data/CUB_200_2011",
+  "num_folds": 10,
+  "epochs_per_fold": 3,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "device": "cuda",
+  "input_resize": 160,
+  "input_crop": 128,
+  "augmentations": {
+    "RandomHorizontalFlip": 0.5,
+    "ColorJitter": {
+      "brightness": 0.2,
+      "contrast": 0.2,
+      "saturation": 0.1,
+      "hue": 0.05
+    }
+  },
+  "model": {
+    "type": "LightCNN_3Conv",
+    "channels": [
+      16,
+      32,
+      64
+    ],
+    "dropout": 0.3,
+    "adaptive_avg_pool": true,
+    "total_params": 36808
+  },
+  "loss": {
+    "type": "CrossEntropyLoss",
+    "label_smoothing": 0.1
+  },
+  "optimizer": "AdamW",
+  "early_stopping_patience": 1,
+  "amp": true
+}
