@@ -1,0 +1,38 @@
+{
+  "data_root": "data/CUB_200_2011",
+  "num_folds": 10,
+  "epochs_per_fold": 20,
+  "batch_size": 16,
+  "learning_rate": 0.001,
+  "device": "cuda",
+  "input_resize": 160,
+  "input_crop": 128,
+  "augmentations": {
+    "RandomHorizontalFlip": 0.5
+  },
+  "weight_decay": 0.0005,
+  "lr_scheduler": {
+    "type": "CosineAnnealingLR",
+    "T_max": 20
+  },
+  "early_stopping_patience": 1,
+  "model": {
+    "type": "LightDSCNN_4Conv",
+    "channels": [
+      24,
+      48,
+      96,
+      128
+    ],
+    "depthwise_separable_from_block2": true,
+    "dropout": 0.4,
+    "adaptive_avg_pool": true,
+    "total_params": 46936
+  },
+  "loss": {
+    "type": "CrossEntropyLoss",
+    "label_smoothing": 0.1
+  },
+  "optimizer": "AdamW",
+  "amp": true
+}
